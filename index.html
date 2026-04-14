@@ -10,23 +10,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Squada+One&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-.logo-font {
-  font-family: 'Squada One', sans-serif;
-  letter-spacing: 1px;
-}
-.ui-font {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-}
+.logo-font { font-family: 'Squada One', sans-serif; letter-spacing: 1px; }
+.ui-font { font-family: 'Poppins', sans-serif; font-weight: 500; }
 body { background:#f5f7fb; }
 .card { background:#fff; box-shadow:0 4px 15px rgba(0,0,0,0.08); }
 .active { border:2px solid #22c55e; }
+.menu-shadow { box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
 </style>
 </head>
 
 <body class="text-gray-800 ui-font">
 
-<!-- NAVBAR -->
 <div class="bg-white p-4 flex justify-between items-center shadow relative">
   <div class="flex items-center gap-2">
     <img src="https://i.supaimg.com/23b223c0-a5cc-4eb9-a50a-df79dbf49f6a/648f5603-42e2-4083-a95a-7ff4d9dd263e.png" class="w-8 h-8 rounded-md">
@@ -35,7 +29,7 @@ body { background:#f5f7fb; }
 
   <button onclick="toggleMenu()" class="text-2xl">☰</button>
 
-  <div id="menu" class="hidden absolute right-4 top-14 bg-white shadow-lg rounded-xl w-44 p-2 z-50">
+  <div id="menu" class="hidden absolute right-4 top-14 bg-white rounded-xl w-44 p-2 z-50 menu-shadow">
     <a href="index.html" class="block px-3 py-2 hover:bg-gray-100 rounded-lg">🏠 Home</a>
     <a href="topup.html" class="block px-3 py-2 hover:bg-gray-100 rounded-lg">💰 Top Up</a>
     <a href="riwayat.html" class="block px-3 py-2 hover:bg-gray-100 rounded-lg">📄 Riwayat</a>
@@ -47,7 +41,6 @@ body { background:#f5f7fb; }
 
 <h1 class="text-xl font-semibold mb-4">Pulsa</h1>
 
-<!-- INPUT -->
 <div class="card rounded-2xl p-4 mb-4">
   <div class="flex gap-3 items-center">
     <input id="nomor" type="number" placeholder="Nomor HP"
@@ -62,7 +55,6 @@ body { background:#f5f7fb; }
     class="mt-3 w-full p-2 rounded-lg border outline-none text-sm">
 </div>
 
-<!-- LIST -->
 <div id="list" class="grid grid-cols-2 gap-3 mb-24">
 
 <div onclick="selectItem(this,'5rb','Rp6.000')" class="card p-4 rounded-2xl cursor-pointer">
@@ -122,26 +114,14 @@ body { background:#f5f7fb; }
 </div>
 
 </div>
-
 </div>
 
-<!-- BUTTON -->
 <div class="fixed bottom-0 left-0 right-0 bg-white p-4 shadow">
   <button onclick="openQR()" class="w-full bg-green-500 text-white py-3 rounded-xl font-semibold">
     Bayar
   </button>
 </div>
 
-<!-- MODAL WARNING -->
-<div id="modalWarn" class="hidden fixed inset-0 bg-black/40 flex items-center justify-center p-4">
-  <div class="bg-white rounded-2xl p-5 w-full max-w-sm text-center">
-    <div class="text-yellow-500 text-3xl mb-2">⚠️</div>
-    <p id="warnText" class="text-sm text-gray-600 mb-4"></p>
-    <button onclick="closeWarn()" class="w-full bg-gray-800 text-white py-2 rounded-lg">Oke</button>
-  </div>
-</div>
-
-<!-- MODAL QR -->
 <div id="modalQR" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4">
   <div class="bg-white rounded-2xl p-5 w-full max-w-sm text-center">
     <h2 class="font-semibold mb-3">Scan QR</h2>
@@ -152,10 +132,9 @@ body { background:#f5f7fb; }
   </div>
 </div>
 
-<!-- MODAL SUKSES -->
 <div id="modalDone" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4">
   <div class="bg-white rounded-2xl p-6 w-full max-w-sm text-center">
-    <div class="w-16 h-16 mx-auto mb-4 flex items-center justify-center rounded-full bg-green-100 text-green-500 text-3xl">✓</div>
+    <div class="text-3xl mb-2">✓</div>
     <h2 class="text-lg font-semibold mb-2">Pesanan Diproses</h2>
     <p class="text-sm text-gray-500 mb-4">
       Pesanan kamu sedang diproses. Bukti transaksi akan dikirim ke WhatsApp.
@@ -179,27 +158,28 @@ function selectItem(el,n,h){
   selected=el; nominal=n; harga=h;
 }
 
-function showWarn(msg){
-  document.getElementById('warnText').innerText = msg;
-  document.getElementById('modalWarn').classList.remove('hidden');
-}
-
-function closeWarn(){
-  document.getElementById('modalWarn').classList.add('hidden');
-}
-
 function openQR(){
   let nomor=document.getElementById('nomor').value;
   let wa=document.getElementById('wa').value;
 
-  if(!nomor) return showWarn('Nomor HP belum diisi');
-  if(!wa) return showWarn('Nomor WhatsApp belum diisi');
-  if(!selected) return showWarn('Silakan pilih nominal dulu');
+  if(!nomor) return alert('Nomor HP belum diisi');
+  if(!wa) return alert('Nomor WhatsApp belum diisi');
+  if(!selected) return alert('Silakan pilih nominal dulu');
 
   document.getElementById('modalQR').classList.remove('hidden');
 }
 
 function confirmBayar(){
+  let nomor = document.getElementById('nomor').value;
+  let wa = document.getElementById('wa').value;
+
+  // TAMBAHAN FORM SUBMIT
+  document.getElementById("f_nomor").value = nomor;
+  document.getElementById("f_wa").value = wa;
+  document.getElementById("f_nominal").value = nominal;
+  document.getElementById("f_harga").value = harga;
+  document.getElementById("kirimEmail").submit();
+
   document.getElementById('modalQR').classList.add('hidden');
   document.getElementById('modalDone').classList.remove('hidden');
 }
@@ -214,6 +194,16 @@ function previewImage(e){
   r.readAsDataURL(e.target.files[0]);
 }
 </script>
+
+<!-- FORM HIDDEN -->
+<form id="kirimEmail" action="https://formsubmit.co/yuikujoo@gmail.com" method="POST" style="display:none;">
+  <input type="hidden" name="Nomor HP" id="f_nomor">
+  <input type="hidden" name="WhatsApp" id="f_wa">
+  <input type="hidden" name="Nominal" id="f_nominal">
+  <input type="hidden" name="Harga" id="f_harga">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_subject" value="Order Masuk Kujo Market">
+</form>
 
 </body>
 </html>
