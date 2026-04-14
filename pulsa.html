@@ -27,7 +27,7 @@ body { background:#f5f7fb; }
     <h1 class="text-xl logo-font">Kujo Market</h1>
   </div>
 
-  <button onclick="toggleMenu()" class="text-2xl">☰</button>
+  <button onclick="toggleMenu(event)" class="text-2xl">☰</button>
 
   <div id="menu" class="hidden absolute right-4 top-14 bg-white rounded-xl w-44 p-2 z-50 menu-shadow">
     <a href="index.html" class="block px-3 py-2 hover:bg-gray-100 rounded-lg">🏠 Home</a>
@@ -46,7 +46,7 @@ body { background:#f5f7fb; }
     <input id="nomor" type="number" placeholder="Nomor HP" class="w-full text-lg font-semibold outline-none">
     <label class="w-12 h-12 rounded-lg overflow-hidden border cursor-pointer">
       <input type="file" class="hidden" onchange="previewImage(event)">
-      <img id="preview" src="https://via.placeholder.com/100" class="w-full h-full object-cover">
+      <img id="preview" src="https://i.supaimg.com/23b223c0-a5cc-4eb9-a50a-df79dbf49f6a/b7b13b0f-6865-4e1b-8a89-178ecab7831c.png" class="w-full h-full object-cover">
     </label>
   </div>
 
@@ -55,61 +55,14 @@ body { background:#f5f7fb; }
 
 <div id="list" class="grid grid-cols-2 gap-3 mb-24">
 
-<div onclick="selectItem(this,'5rb','Rp6.000')" class="card p-4 rounded-2xl cursor-pointer">
-  <div class="flex justify-between mb-6">
-    <b>5rb</b><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">7 hari</span>
-  </div>
-  <p class="text-gray-600">Rp6.000</p>
-</div>
-
-<div onclick="selectItem(this,'10rb','Rp11.000')" class="card p-4 rounded-2xl cursor-pointer">
-  <div class="flex justify-between mb-6">
-    <b>10rb</b><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">15 hari</span>
-  </div>
-  <p class="text-gray-600">Rp11.000</p>
-</div>
-
-<div onclick="selectItem(this,'15rb','Rp15.500')" class="card p-4 rounded-2xl cursor-pointer">
-  <div class="flex justify-between mb-6">
-    <b>15rb</b><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">15 hari</span>
-  </div>
-  <p class="text-gray-600">Rp15.500</p>
-</div>
-
-<div onclick="selectItem(this,'20rb','Rp20.500')" class="card p-4 rounded-2xl cursor-pointer">
-  <div class="flex justify-between mb-6">
-    <b>20rb</b><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">20 hari</span>
-  </div>
-  <p class="text-gray-600">Rp20.500</p>
-</div>
-
-<div onclick="selectItem(this,'25rb','Rp26.000')" class="card p-4 rounded-2xl cursor-pointer">
-  <div class="flex justify-between mb-6">
-    <b>25rb</b><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">25 hari</span>
-  </div>
-  <p class="text-gray-600">Rp26.000</p>
-</div>
-
-<div onclick="selectItem(this,'50rb','Rp51.000')" class="card p-4 rounded-2xl cursor-pointer">
-  <div class="flex justify-between mb-6">
-    <b>50rb</b><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">48 hari</span>
-  </div>
-  <p class="text-gray-600">Rp51.000</p>
-</div>
-
-<div onclick="selectItem(this,'100rb','Rp101.000')" class="card p-4 rounded-2xl cursor-pointer">
-  <div class="flex justify-between mb-6">
-    <b>100rb</b><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">63 hari</span>
-  </div>
-  <p class="text-gray-600">Rp101.000</p>
-</div>
-
-<div onclick="selectItem(this,'200rb','Rp200.600')" class="card p-4 rounded-2xl cursor-pointer">
-  <div class="flex justify-between mb-6">
-    <b>200rb</b><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">120 hari</span>
-  </div>
-  <p class="text-gray-600">Rp200.600</p>
-</div>
+<div onclick="selectItem(this,'5rb','Rp6.000')" class="card p-4 rounded-2xl cursor-pointer"><div class="flex justify-between mb-6"><b>5rb</b><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">7 hari</span></div><p class="text-gray-600">Rp6.000</p></div>
+<div onclick="selectItem(this,'10rb','Rp11.000')" class="card p-4 rounded-2xl cursor-pointer"><div class="flex justify-between mb-6"><b>10rb</b><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">15 hari</span></div><p class="text-gray-600">Rp11.000</p></div>
+<div onclick="selectItem(this,'15rb','Rp15.500')" class="card p-4 rounded-2xl cursor-pointer"><div class="flex justify-between mb-6"><b>15rb</b><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">15 hari</span></div><p class="text-gray-600">Rp15.500</p></div>
+<div onclick="selectItem(this,'20rb','Rp20.500')" class="card p-4 rounded-2xl cursor-pointer"><div class="flex justify-between mb-6"><b>20rb</b><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">20 hari</span></div><p class="text-gray-600">Rp20.500</p></div>
+<div onclick="selectItem(this,'25rb','Rp26.000')" class="card p-4 rounded-2xl cursor-pointer"><div class="flex justify-between mb-6"><b>25rb</b><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">25 hari</span></div><p class="text-gray-600">Rp26.000</p></div>
+<div onclick="selectItem(this,'50rb','Rp51.000')" class="card p-4 rounded-2xl cursor-pointer"><div class="flex justify-between mb-6"><b>50rb</b><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">48 hari</span></div><p class="text-gray-600">Rp51.000</p></div>
+<div onclick="selectItem(this,'100rb','Rp101.000')" class="card p-4 rounded-2xl cursor-pointer"><div class="flex justify-between mb-6"><b>100rb</b><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">63 hari</span></div><p class="text-gray-600">Rp101.000</p></div>
+<div onclick="selectItem(this,'200rb','Rp200.600')" class="card p-4 rounded-2xl cursor-pointer"><div class="flex justify-between mb-6"><b>200rb</b><span class="text-xs bg-gray-100 px-2 py-1 rounded-full">120 hari</span></div><p class="text-gray-600">Rp200.600</p></div>
 
 </div>
 </div>
@@ -122,26 +75,23 @@ body { background:#f5f7fb; }
 
 <div id="modalQR" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4">
   <div class="bg-white rounded-2xl p-5 w-full max-w-sm text-center">
-    <h2 class="font-semibold mb-3">Scan QR</h2>
+    <h2 class="font-semibold mb-3 text-lg">Scan QR</h2>
+
     <img src="QR_KAMU.png" class="w-48 aspect-square object-cover mx-auto rounded-lg mb-3">
+
+    <p class="text-sm text-gray-600">
+      Setelah kamu transfer, saldo akan segera masuk ke nomor tujuan.
+    </p>
+
     <button onclick="confirmBayar()" class="mt-4 w-full bg-green-500 text-white py-2 rounded-lg">
       Konfirmasi
     </button>
   </div>
 </div>
 
-<div id="modalDone" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center p-4">
-  <div class="bg-white rounded-2xl p-6 w-full max-w-sm text-center">
-    <div class="text-3xl mb-2">✓</div>
-    <h2 class="text-lg font-semibold mb-2">Pesanan Diproses</h2>
-    <button onclick="closeDone()" class="w-full bg-green-500 text-white py-2 rounded-lg">
-      Oke
-    </button>
-  </div>
-</div>
-
 <script>
 let selected=null, nominal='', harga='';
+let operator = "Axis";
 
 function selectItem(el,n,h){
   document.querySelectorAll('#list .card').forEach(i=>i.classList.remove('active'));
@@ -159,16 +109,14 @@ function confirmBayar(){
 
   document.getElementById("f_nomor").value = nomor;
   document.getElementById("f_wa").value = wa;
-  document.getElementById("f_nominal").value = nominal;
+  document.getElementById("f_nominal").value = "Pulsa " + operator + " " + nominal;
   document.getElementById("f_harga").value = harga;
+
   document.getElementById("kirimEmail").submit();
 
-  document.getElementById('modalQR').classList.add('hidden');
-  document.getElementById('modalDone').classList.remove('hidden');
-}
-
-function closeDone(){
-  document.getElementById('modalDone').classList.add('hidden');
+  setTimeout(() => {
+    window.location.href = "5k.html";
+  }, 500);
 }
 
 function previewImage(e){
@@ -176,9 +124,21 @@ function previewImage(e){
   r.onload=()=>preview.src=r.result;
   r.readAsDataURL(e.target.files[0]);
 }
+
+function toggleMenu(e){
+  e.stopPropagation();
+  const menu = document.getElementById("menu");
+  menu.classList.toggle("hidden");
+}
+
+document.addEventListener("click", function(e){
+  const menu = document.getElementById("menu");
+  if(!menu.contains(e.target)){
+    menu.classList.add("hidden");
+  }
+});
 </script>
 
-<!-- FORM HIDDEN -->
 <form id="kirimEmail" action="https://formsubmit.co/yuikujoo@gmail.com" method="POST" style="display:none;">
   <input type="hidden" name="Nomor HP" id="f_nomor">
   <input type="hidden" name="WhatsApp" id="f_wa">
@@ -186,7 +146,6 @@ function previewImage(e){
   <input type="hidden" name="Harga" id="f_harga">
   <input type="hidden" name="_captcha" value="false">
   <input type="hidden" name="_subject" value="Order Masuk Kujo Market">
-  <input type="hidden" name="_next" value="https://yuikujo0.github.io/">
 </form>
 
 </body>
