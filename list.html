@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kujo Market</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Squada+One&display=swap" rel="stylesheet">
+
+<style>
+::-webkit-scrollbar {
+  display: none;
+}
+.font-produk {
+  font-family: 'Poppins', sans-serif;
+}
+.font-logo {
+  font-family: 'Squada One', cursive;
+}
+</style>
+
+</head>
+
+<body class="bg-gray-100">
+
+<!-- HEADER -->
+<div class="bg-white p-4 flex justify-between items-center shadow-md relative">
+  <div class="flex items-center gap-2">
+    <img src="https://via.placeholder.com/40" class="w-8 h-8 rounded-lg object-cover">
+    <h1 class="text-xl text-gray-800 font-logo tracking-wide">Kujo Market</h1>
+  </div>
+
+  <button onclick="toggleMenu()" class="text-2xl text-gray-800">☰</button>
+
+  <div id="menu" class="hidden absolute right-4 top-14 bg-white text-black rounded-2xl shadow-xl w-44 p-4 z-50">
+    <ul class="space-y-3">
+      <li onclick="goTo('home.html')" class="cursor-pointer">🏠 Home</li>
+      <li onclick="goTo('topup.html')" class="cursor-pointer">💰 Top Up</li>
+      <li onclick="goTo('riwayat.html')" class="cursor-pointer">📄 Riwayat</li>
+      <li onclick="goTo('kontak.html')" class="cursor-pointer">📞 Kontak</li>
+    </ul>
+  </div>
+</div>
+
+<!-- KATEGORI -->
+<div class="p-4 flex gap-2 text-sm">
+  <div onclick="goTo('mlbb.html')" class="bg-blue-100 text-blue-600 px-3 py-2 rounded-full flex-1 text-center cursor-pointer">Mlbb</div>
+
+  <div onclick="belumAda()" class="bg-gray-200 px-3 py-2 rounded-full flex-1 text-center cursor-pointer">
+    📱 Free Fire
+  </div>
+
+  <div onclick="belumAda()" class="bg-gray-200 px-3 py-2 rounded-full flex-1 text-center cursor-pointer">
+    💻 Roblox
+  </div>
+</div>
+
+<!-- GRID -->
+<div class="p-4 grid grid-cols-2 gap-4">
+
+<!-- TEMPLATE ITEM -->
+<!-- Tinggal copy block ini kalau mau nambah -->
+
+<div onclick="goTo('produk1.html')" class="bg-white rounded-xl shadow overflow-hidden cursor-pointer">
+  <div class="relative">
+    <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-lg">-30%</div>
+    <div class="w-full aspect-[3/4]">
+      <img src="https://via.placeholder.com/300x400" class="w-full h-full object-cover">
+    </div>
+  </div>
+  <div class="p-2 font-produk">
+    <p class="text-sm font-medium">Moskov Allstar</p>
+    <p class="text-gray-400 line-through text-xs">Rp100.000</p>
+    <p class="text-red-500 font-semibold">Rp70.000</p>
+  </div>
+</div>
+
+<div onclick="goTo('produk2.html')" class="bg-white rounded-xl shadow overflow-hidden cursor-pointer">
+  <div class="relative">
+    <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-lg">-20%</div>
+    <div class="w-full aspect-[3/4]">
+      <img src="https://via.placeholder.com/300x400" class="w-full h-full object-cover">
+    </div>
+  </div>
+  <div class="p-2 font-produk">
+    <p class="text-sm font-medium">Item 2</p>
+    <p class="text-gray-400 line-through text-xs">Rp95.000</p>
+    <p class="text-red-500 font-semibold">Rp75.000</p>
+  </div>
+</div>
+
+<div onclick="goTo('produk3.html')" class="bg-white rounded-xl shadow overflow-hidden cursor-pointer">
+  <div class="relative">
+    <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-lg">-25%</div>
+    <div class="w-full aspect-[3/4]">
+      <img src="https://via.placeholder.com/300x400" class="w-full h-full object-cover">
+    </div>
+  </div>
+  <div class="p-2 font-produk">
+    <p class="text-sm font-medium">Item 3</p>
+    <p class="text-gray-400 line-through text-xs">Rp80.000</p>
+    <p class="text-red-500 font-semibold">Rp60.000</p>
+  </div>
+</div>
+
+<div onclick="goTo('produk4.html')" class="bg-white rounded-xl shadow overflow-hidden cursor-pointer">
+  <div class="relative">
+    <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-lg">-15%</div>
+    <div class="w-full aspect-[3/4]">
+      <img src="https://via.placeholder.com/300x400" class="w-full h-full object-cover">
+    </div>
+  </div>
+  <div class="p-2 font-produk">
+    <p class="text-sm font-medium">Item 4</p>
+    <p class="text-gray-400 line-through text-xs">Rp60.000</p>
+    <p class="text-red-500 font-semibold">Rp50.000</p>
+  </div>
+</div>
+
+<div onclick="goTo('produk5.html')" class="bg-white rounded-xl shadow overflow-hidden cursor-pointer">
+  <div class="relative">
+    <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-lg">-10%</div>
+    <div class="w-full aspect-[3/4]">
+      <img src="https://via.placeholder.com/300x400" class="w-full h-full object-cover">
+    </div>
+  </div>
+  <div class="p-2 font-produk">
+    <p class="text-sm font-medium">Item 5</p>
+    <p class="text-gray-400 line-through text-xs">Rp90.000</p>
+    <p class="text-red-500 font-semibold">Rp80.000</p>
+  </div>
+</div>
+
+<div onclick="goTo('produk6.html')" class="bg-white rounded-xl shadow overflow-hidden cursor-pointer">
+  <div class="relative">
+    <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-lg">-35%</div>
+    <div class="w-full aspect-[3/4]">
+      <img src="https://via.placeholder.com/300x400" class="w-full h-full object-cover">
+    </div>
+  </div>
+  <div class="p-2 font-produk">
+    <p class="text-sm font-medium">Item 6</p>
+    <p class="text-gray-400 line-through text-xs">Rp140.000</p>
+    <p class="text-red-500 font-semibold">Rp90.000</p>
+  </div>
+</div>
+
+<div onclick="goTo('produk7.html')" class="bg-white rounded-xl shadow overflow-hidden cursor-pointer">
+  <div class="relative">
+    <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-lg">-20%</div>
+    <div class="w-full aspect-[3/4]">
+      <img src="https://via.placeholder.com/300x400" class="w-full h-full object-cover">
+    </div>
+  </div>
+  <div class="p-2 font-produk">
+    <p class="text-sm font-medium">Item 7</p>
+    <p class="text-gray-400 line-through text-xs">Rp70.000</p>
+    <p class="text-red-500 font-semibold">Rp55.000</p>
+  </div>
+</div>
+
+<div onclick="goTo('produk8.html')" class="bg-white rounded-xl shadow overflow-hidden cursor-pointer">
+  <div class="relative">
+    <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-lg">-18%</div>
+    <div class="w-full aspect-[3/4]">
+      <img src="https://via.placeholder.com/300x400" class="w-full h-full object-cover">
+    </div>
+  </div>
+  <div class="p-2 font-produk">
+    <p class="text-sm font-medium">Item 8</p>
+    <p class="text-gray-400 line-through text-xs">Rp80.000</p>
+    <p class="text-red-500 font-semibold">Rp65.000</p>
+  </div>
+</div>
+
+<div onclick="goTo('produk9.html')" class="bg-white rounded-xl shadow overflow-hidden cursor-pointer">
+  <div class="relative">
+    <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-lg">-12%</div>
+    <div class="w-full aspect-[3/4]">
+      <img src="https://via.placeholder.com/300x400" class="w-full h-full object-cover">
+    </div>
+  </div>
+  <div class="p-2 font-produk">
+    <p class="text-sm font-medium">Item 9</p>
+    <p class="text-gray-400 line-through text-xs">Rp80.000</p>
+    <p class="text-red-500 font-semibold">Rp70.000</p>
+  </div>
+</div>
+
+<div onclick="goTo('produk10.html')" class="bg-white rounded-xl shadow overflow-hidden cursor-pointer">
+  <div class="relative">
+    <div class="absolute top-2 left-2 bg-red-500 text-white text-xs px-2 py-1 rounded-lg">-22%</div>
+    <div class="w-full aspect-[3/4]">
+      <img src="https://via.placeholder.com/300x400" class="w-full h-full object-cover">
+    </div>
+  </div>
+  <div class="p-2 font-produk">
+    <p class="text-sm font-medium">Item 10</p>
+    <p class="text-gray-400 line-through text-xs">Rp110.000</p>
+    <p class="text-red-500 font-semibold">Rp85.000</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("hidden");
+}
+
+function goTo(link) {
+  window.location.href = link;
+}
+
+function belumAda() {
+  alert("Maaf fitur belum tersedia");
+}
+</script>
+
+</body>
+</html>
