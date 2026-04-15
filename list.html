@@ -13,7 +13,7 @@
   .bg-dark-card { background: rgba(18, 18, 18, 0.98); }
   .font-logo { font-family: 'Squada One', sans-serif; letter-spacing: 1px; }
   
-  /* GIMIK EMAS */
+  /* --- GIMIK EMAS --- */
   .gold-text { 
     background: linear-gradient(135deg, #bf953f, #fcf6ba, #aa771c, #fcf6ba, #bf953f); 
     background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
@@ -21,7 +21,7 @@
   }
   @keyframes shineText { to { background-position: 200% center; } }
 
-  /* CARD & BORDER PUTAR */
+  /* --- KARTU & BORDER PUTAR --- */
   .card-premium { 
     position: relative; background: #0f0f0f; border-radius: 1rem; overflow: hidden;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -36,7 +36,7 @@
   .card-premium::after { content: ''; position: absolute; inset: 2px; background: #111; border-radius: 0.9rem; z-index: -1; }
   @keyframes rotateBorder { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-  /* BADGE */
+  /* --- BADGE DENYUT --- */
   .gold-badge { 
     background: linear-gradient(135deg, #bf953f, #fcf6ba, #aa771c); color: #000; 
     font-weight: 800; font-size: 9px; padding: 2px 6px; border-radius: 4px; 
@@ -44,15 +44,15 @@
   }
   @keyframes pulseBadge { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-  .entry-anim { opacity: 0; animation: fadeInUp 0.6s ease forwards; }
-  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-  /* SOLD OUT SYSTEM */
+  /* --- SISTEM SOLD OUT (GIMIK ABU-ABU) --- */
   .is-sold-out { filter: grayscale(1) !important; opacity: 0.5 !important; cursor: not-allowed !important; pointer-events: none !important; }
   .is-sold-out::before { background-image: conic-gradient(transparent, transparent, transparent, #444) !important; }
-  .is-sold-out .gold-badge { background: #333 !important; color: #888 !important; animation: none !important; }
+  .is-sold-out .gold-badge { background: #333 !important; color: #888 !important; animation: none !important; box-shadow: none !important; }
   .is-sold-out .gold-text { background: #666 !important; -webkit-text-fill-color: #666 !important; }
 
+  /* --- ANIMASI LAINNYA --- */
+  .entry-anim { opacity: 0; animation: fadeInUp 0.6s ease forwards; }
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   .animate-marquee { animation: marquee 15s linear infinite; display: flex; width: max-content; }
   @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 </style>
@@ -64,19 +64,19 @@
     <div class="w-8 h-8 rounded-md bg-[#bf953f] flex items-center justify-center font-bold text-black">K</div>
     <h1 class="text-xl font-logo gold-text">KUJO MARKET</h1>
   </div>
-  <button onclick="toggleMenu()" class="text-2xl text-white">☰</button>
-  <div id="menu" class="hidden absolute right-4 top-16 bg-[#111]/95 border border-white/10 rounded-2xl w-44 p-2 z-50 backdrop-blur-xl text-white">
-    <ul class="space-y-1 text-sm">
-      <li onclick="location.href='index.html'" class="p-3 rounded-xl hover:bg-white/5 cursor-pointer">🏠 Home</li>
-      <li onclick="location.href='topup.html'" class="p-3 rounded-xl hover:bg-white/5 cursor-pointer">💰 Top Up</li>
+  <button onclick="toggleMenu()" class="text-2xl text-white outline-none">☰</button>
+  <div id="menu" class="hidden absolute right-4 top-16 bg-[#111]/95 border border-white/10 rounded-2xl w-44 p-2 shadow-3xl z-50 backdrop-blur-xl">
+    <ul class="space-y-1 text-sm text-white">
+      <li onclick="location.href='index.html'" class="p-3 rounded-xl hover:bg-white/5">🏠 Home</li>
+      <li onclick="location.href='topup.html'" class="p-3 rounded-xl hover:bg-white/5">💰 Top Up</li>
     </ul>
   </div>
 </div>
 
 <div class="bg-white/5 border-y border-white/5 py-1 overflow-hidden">
   <div class="whitespace-nowrap flex gap-10 animate-marquee">
-    <span class="text-[9px] font-bold gold-text uppercase">⚡ FLASH SALE PREMIUM ITEM - HARGA KHUSUS MEMBER VIP ⚡</span>
-    <span class="text-[9px] font-bold gold-text uppercase">⚡ FLASH SALE PREMIUM ITEM - HARGA KHUSUS MEMBER VIP ⚡</span>
+    <span class="text-[9px] font-bold gold-text uppercase">⚡ FLASH SALE PREMIUM ITEM - KUJO MARKET ⚡</span>
+    <span class="text-[9px] font-bold gold-text uppercase">⚡ FLASH SALE PREMIUM ITEM - KUJO MARKET ⚡</span>
   </div>
 </div>
 
@@ -88,30 +88,29 @@
   function renderMarket() {
     const list = document.getElementById('product-list');
     
-    // Cek Sold Out di Nama atau Badge (Auto Greyscale & Turun)
-    const isSold = (item) => {
-      const teksNama = item.nama.toLowerCase();
-      const teksBadge = item.badge.toLowerCase();
-      return teksNama.includes("sold") || teksBadge.includes("sold");
+    // Fungsi cek kata 'sold' (Nama atau Badge)
+    const cekSold = (item) => {
+      return item.nama.toLowerCase().includes("sold") || item.badge.toLowerCase().includes("sold");
     };
 
-    // Urutkan: Yang Sold Out otomatis ke bawah
-    const sortedData = [...dataProduk].sort((a, b) => isSold(a) - isSold(b));
+    // Sorting Otomatis: Yang Sold Out dipaksa ke bawah
+    const sortedData = [...dataProduk].sort((a, b) => cekSold(a) - cekSold(b));
 
     list.innerHTML = sortedData.map((item, index) => {
-      const soldOut = isSold(item);
+      const isSold = cekSold(item);
+      
       return `
-        <div class="card-premium entry-anim ${soldOut ? 'is-sold-out' : ''}" 
+        <div class="card-premium entry-anim ${isSold ? 'is-sold-out' : 'cursor-pointer'}" 
              style="animation-delay: ${index * 0.1}s"
-             ${soldOut ? '' : "onclick='location.href=\"detail.html\"'"}>
+             ${isSold ? '' : `onclick="location.href='${item.link}'"`}>
           <div class="p-1 w-full h-full relative z-10 text-center">
             <div class="absolute top-2 left-2 z-20 gold-badge">${item.badge}</div>
             <img src="${item.foto}" class="w-full aspect-[3/4] object-cover rounded-t-xl">
             <div class="p-3">
-              <p class="text-[11px] font-bold ${soldOut ? 'text-gray-500' : 'text-white'} truncate">${item.nama}</p>
+              <p class="text-[11px] font-bold ${isSold ? 'text-gray-500' : 'text-white'} truncate">${item.nama}</p>
               <p class="text-[9px] text-red-500/80 line-through">${item.coret}</p>
-              <p class="text-xs ${soldOut ? 'text-gray-600 font-bold' : 'gold-text font-black scale-110'}">
-                ${soldOut ? 'HABIS' : item.harga}
+              <p class="text-xs ${isSold ? 'text-gray-600 font-bold' : 'gold-text font-black scale-110'}">
+                ${isSold ? 'HABIS' : item.harga}
               </p>
             </div>
           </div>
