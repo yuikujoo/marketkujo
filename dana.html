@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Kujo Market - Top Up GoPay Gold</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Squada+One&family=Poppins:wght@400;500;600;800&display=swap" rel="stylesheet">
+
+<style>
+.overflow-x-auto::-webkit-scrollbar { display:none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+body { background-color: #050505; color: #f0f0f0; }
+.bg-dark-card { background: rgba(18, 18, 18, 0.98); }
+.logo-font { font-family:'Squada One',sans-serif; letter-spacing:1px; display: flex; gap: 1px; }
+.logo-font span { display: inline-block; opacity: 0; transform: translateY(15px); animation: letterAnim 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; background: #ffffff; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+@keyframes letterAnim { to { opacity: 1; transform: translateY(0); } }
+.ui-font { font-family:'Poppins',sans-serif; }
+.gold-text { background: linear-gradient(135deg, #bf953f, #fcf6ba, #aa771c, #fcf6ba, #bf953f); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shineText 3s linear infinite; }
+.gold-badge { background: linear-gradient(135deg, #bf953f, #fcf6ba, #aa771c); color: #000; font-weight: 800; font-size: 8px; padding: 2px 6px; border-radius: 4px; position: relative; overflow: hidden; }
+.gold-badge::after { content: ""; position: absolute; top: -50%; left: -100%; width: 100%; height: 200%; background: rgba(255,255,255,0.4); transform: rotate(30deg); animation: shimmer 2s infinite; }
+@keyframes shimmer { 100% { left: 150%; } }
+@keyframes shineText { to { background-position: 200% center; } }
+.card-premium { background: #111; border: 1px solid rgba(191, 149, 63, 0.1); transition: all 0.3s ease; position: relative; }
+.active { border-color: #bf953f !important; background: rgba(191, 149, 63, 0.05); box-shadow: 0 0 15px rgba(191, 149, 63, 0.2); }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.animate-list { animation: fadeInUp 0.5s ease forwards; }
+input::placeholder { color: #555; }
+input { background: transparent !important; color: white; }
+</style>
+</head>
+
+<body class="ui-font">
+
+<div class="bg-dark-card p-4 px-6 flex justify-between items-center sticky top-0 z-50 border-b border-white/5">
+  <div class="flex items-center gap-3">
+    <img src="https://i.supaimg.com/23b223c0-a5cc-4eb9-a50a-df79dbf49f6a/55af5214-850d-4391-8cb1-807fc897e444.png" class="w-8 h-8 rounded-md">
+    <h1 class="text-xl logo-font">
+        <span>K</span><span>u</span><span>j</span><span>o</span><span>&nbsp;</span><span>M</span><span>a</span><span>r</span><span>k</span><span>e</span><span>t</span>
+    </h1>
+  </div>
+  <button onclick="toggleMenu(event)" class="text-2xl text-white">☰</button>
+  <div id="menu" class="hidden absolute right-4 top-16 bg-[#111] border border-white/10 rounded-2xl w-44 p-2 shadow-3xl z-50 backdrop-blur-xl">
+    <a href="index.html" class="block px-4 py-2 rounded-xl hover:bg-white/5 transition">🏠 Home</a>
+    <a href="indez.html" class="block px-4 py-2 rounded-xl hover:bg-white/5 transition">💰 Top Up</a>
+    <a href="cs.html" class="block px-4 py-2 rounded-xl hover:bg-white/5 transition">📞 Kontak</a>
+  </div>
+</div>
+
+<div class="max-w-md mx-auto p-5">
+    <div class="flex flex-col mb-4">
+        <h1 class="text-lg font-bold flex items-center gap-2">
+            <span class="w-1 h-5 bg-[#bf953f] rounded-full"></span> Top Up GoPay
+        </h1>
+        <div class="flex justify-between items-center mt-1">
+            <span class="text-[10px] text-gray-400">PROMO TERBATAS HARI INI</span>
+            <span class="gold-text text-[10px] font-black animate-pulse">FLASH SALE 30% OFF</span>
+        </div>
+    </div>
+
+    <div class="card-premium rounded-2xl p-4 mb-6">
+        <div class="flex items-center border-b border-white/5 pb-3">
+            <input id="nomor" type="number" placeholder="Masukkan Nomor GoPay" class="w-full text-lg font-bold outline-none">
+        </div>
+        <input id="wa" type="number" placeholder="Nomor WhatsApp (wajib)" class="mt-3 w-full p-2 outline-none text-sm opacity-80">
+    </div>
+
+    <div id="list" class="grid grid-cols-2 gap-3 mb-28">
+        <div onclick="selectItem(this,'5rb','Rp6.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">5rb</b><span class="gold-badge">-15%</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp7.200</p>
+            <p class="text-sm gold-text font-bold">Rp6.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp1.200</p>
+        </div>
+        <div onclick="selectItem(this,'10rb','Rp11.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">10rb</b><span class="gold-badge">-18%</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp13.500</p>
+            <p class="text-sm gold-text font-bold">Rp11.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp2.500</p>
+        </div>
+        <div onclick="selectItem(this,'20rb','Rp21.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">20rb</b><span class="gold-badge">-20%</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp26.250</p>
+            <p class="text-sm gold-text font-bold">Rp21.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp5.250</p>
+        </div>
+
+        <div onclick="selectItem(this,'50rb','Rp51.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">50rb</b><span class="gold-badge">-25%</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp68.000</p>
+            <p class="text-sm gold-text font-bold">Rp51.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp17.000</p>
+        </div>
+        <div onclick="selectItem(this,'75rb','Rp76.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">75rb</b><span class="gold-badge">-22%</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp97.500</p>
+            <p class="text-sm gold-text font-bold">Rp76.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp21.500</p>
+        </div>
+        <div onclick="selectItem(this,'100rb','Rp101.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">100rb</b><span class="gold-badge">BEST</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp125.000</p>
+            <p class="text-sm gold-text font-bold">Rp101.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp24.000</p>
+        </div>
+        <div onclick="selectItem(this,'125rb','Rp126.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">125rb</b><span class="gold-badge">HOT</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp150.000</p>
+            <p class="text-sm gold-text font-bold">Rp126.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp24.000</p>
+        </div>
+        <div onclick="selectItem(this,'150rb','Rp151.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">150rb</b><span class="gold-badge">-20%</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp188.000</p>
+            <p class="text-sm gold-text font-bold">Rp151.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp37.000</p>
+        </div>
+        <div onclick="selectItem(this,'175rb','Rp176.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">175rb</b><span class="gold-badge">SALE</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp210.000</p>
+            <p class="text-sm gold-text font-bold">Rp176.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp34.000</p>
+        </div>
+        <div onclick="selectItem(this,'200rb','Rp200.600')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">200rb</b><span class="gold-badge">VVIP</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp245.000</p>
+            <p class="text-sm gold-text font-bold">Rp200.600</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp44.400</p>
+        </div>
+        <div onclick="selectItem(this,'225rb','Rp226.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">225rb</b><span class="gold-badge">GOLD</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp270.000</p>
+            <p class="text-sm gold-text font-bold">Rp226.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp44.000</p>
+        </div>
+        <div onclick="selectItem(this,'250rb','Rp251.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">250rb</b><span class="gold-badge">GOLD</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp300.000</p>
+            <p class="text-sm gold-text font-bold">Rp251.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp49.000</p>
+        </div>
+        <div onclick="selectItem(this,'275rb','Rp276.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">275rb</b><span class="gold-badge">GOLD</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp330.000</p>
+            <p class="text-sm gold-text font-bold">Rp276.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp54.000</p>
+        </div>
+        <div onclick="selectItem(this,'300rb','Rp300.600')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">300rb</b><span class="gold-badge">MAX</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp360.000</p>
+            <p class="text-sm gold-text font-bold">Rp300.600</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp59.400</p>
+        </div>
+        <div onclick="selectItem(this,'325rb','Rp326.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">325rb</b><span class="gold-badge">GOLD</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp390.000</p>
+            <p class="text-sm gold-text font-bold">Rp326.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp64.000</p>
+        </div>
+        <div onclick="selectItem(this,'350rb','Rp351.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">350rb</b><span class="gold-badge">GOLD</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp420.000</p>
+            <p class="text-sm gold-text font-bold">Rp351.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp69.000</p>
+        </div>
+        <div onclick="selectItem(this,'375rb','Rp376.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">375rb</b><span class="gold-badge">GOLD</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp450.000</p>
+            <p class="text-sm gold-text font-bold">Rp376.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp74.000</p>
+        </div>
+        <div onclick="selectItem(this,'400rb','Rp400.600')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">400rb</b><span class="gold-badge">ULTRA</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp480.000</p>
+            <p class="text-sm gold-text font-bold">Rp400.600</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp79.400</p>
+        </div>
+        <div onclick="selectItem(this,'425rb','Rp426.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">425rb</b><span class="gold-badge">GOLD</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp510.000</p>
+            <p class="text-sm gold-text font-bold">Rp426.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp84.000</p>
+        </div>
+        <div onclick="selectItem(this,'450rb','Rp451.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">450rb</b><span class="gold-badge">GOLD</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp540.000</p>
+            <p class="text-sm gold-text font-bold">Rp451.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp89.000</p>
+        </div>
+        <div onclick="selectItem(this,'475rb','Rp476.000')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">475rb</b><span class="gold-badge">GOLD</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp570.000</p>
+            <p class="text-sm gold-text font-bold">Rp476.000</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp94.000</p>
+        </div>
+        <div onclick="selectItem(this,'500rb','Rp500.600')" class="card-premium p-4 rounded-2xl cursor-pointer animate-list">
+            <div class="flex justify-between items-start mb-1"><b class="text-lg">500rb</b><span class="gold-badge">LIMIT</span></div>
+            <p class="text-[9px] text-gray-500 line-through">Rp600.000</p>
+            <p class="text-sm gold-text font-bold">Rp500.600</p>
+            <p class="text-[8px] text-[#bf953f]/60 mt-1">Hemat Rp99.400</p>
+        </div>
+    </div>
+</div>
+
+<div class="fixed bottom-0 left-0 right-0 bg-[#050505]/80 backdrop-blur-md p-4 border-t border-white/5 z-50">
+  <button onclick="openQR()" class="w-full bg-gradient-to-r from-[#bf953f] via-[#fcf6ba] to-[#aa771c] text-black py-4 rounded-2xl font-black shadow-lg shadow-gold/10 active:scale-95 transition uppercase tracking-widest">
+    Proses Pembayaran
+  </button>
+</div>
+
+<div id="modalQR" class="hidden fixed inset-0 bg-black/95 backdrop-blur-sm flex items-center justify-center p-6 z-[100]">
+  <div class="bg-[#111] border border-[#bf953f]/30 rounded-3xl p-6 w-full max-w-sm text-center">
+    <h2 class="font-bold mb-4 text-white text-lg tracking-wide uppercase gold-text">Scan QR Pembayaran</h2>
+    <div class="bg-white p-3 rounded-2xl inline-block mb-4 shadow-[0_0_20px_rgba(191,149,63,0.3)]">
+        <img id="qrImage" src="placeholder.png" class="w-48 aspect-square object-cover rounded-lg">
+    </div>
+    <p class="text-xs text-white/60 mb-6 leading-relaxed px-4">
+      Silahkan menyelasaikan transaksi kamu dengan cara melakukan pembayaran dengan Qr di atas.
+    </p>
+    <button onclick="confirmBayar()" class="w-full bg-gradient-to-r from-[#bf953f] to-[#aa771c] text-black py-3 rounded-xl font-bold transition">
+      Konfirmasi Sekarang
+    </button>
+  </div>
+</div>
+
+<script>
+let selected=null, nominal='', harga='';
+let operator = "GoPay";
+
+// Daftar link gambar QR sesuai nominal
+const daftarQR = {
+    "5rb": "https://link-qr-5rb.png",
+    "10rb": "https://link-qr-10rb.png",
+    "20rb": "https://link-qr-20rb.png",
+    "50rb": "https://link-qr-50rb.png",
+    "75rb": "https://link-qr-75rb.png",
+    "100rb": "https://link-qr-100rb.png",
+    "125rb": "https://link-qr-125rb.png",
+    "150rb": "https://link-qr-150rb.png",
+    "175rb": "https://link-qr-175rb.png",
+    "200rb": "https://link-qr-200rb.png",
+    "225rb": "https://link-qr-225rb.png",
+    "250rb": "https://link-qr-250rb.png",
+    "275rb": "https://link-qr-275rb.png",
+    "300rb": "https://link-qr-300rb.png",
+    "325rb": "https://link-qr-325rb.png",
+    "350rb": "https://link-qr-350rb.png",
+    "375rb": "https://link-qr-375rb.png",
+    "400rb": "https://link-qr-400rb.png",
+    "425rb": "https://link-qr-425rb.png",
+    "450rb": "https://link-qr-450rb.png",
+    "475rb": "https://link-qr-475rb.png",
+    "500rb": "https://link-qr-500rb.png"
+};
+
+function selectItem(el,n,h){
+  document.querySelectorAll('#list .card-premium').forEach(i=>i.classList.remove('active'));
+  el.classList.add('active');
+  selected=el; nominal=n; harga=h;
+}
+
+function openQR(){
+  if(!nominal) return alert('Pilih nominal dulu!');
+  let linkQR = daftarQR[nominal] || "QR_DEFAULT.png";
+  document.getElementById('qrImage').src = linkQR;
+  document.getElementById('modalQR').classList.remove('hidden');
+}
+
+function confirmBayar(){
+  let nomor = document.getElementById('nomor').value;
+  let wa = document.getElementById('wa').value;
+  if(!nomor) return alert('Nomor GoPay jangan kosong!');
+
+  document.getElementById("f_nomor").value = nomor;
+  document.getElementById("f_wa").value = wa;
+  document.getElementById("f_nominal").value = "Top Up " + operator + " " + nominal;
+  document.getElementById("f_harga").value = harga;
+
+  document.getElementById("kirimEmail").submit();
+
+  setTimeout(() => {
+    window.location.href = "5k.html";
+  }, 500);
+}
+
+function toggleMenu(e){
+  e.stopPropagation();
+  document.getElementById("menu").classList.toggle("hidden");
+}
+
+document.addEventListener("click", function(e){
+  const menu = document.getElementById("menu");
+  if(menu && !menu.contains(e.target)) menu.classList.add("hidden");
+});
+</script>
+
+<form id="kirimEmail" action="https://formsubmit.co/yuikujoo@gmail.com" method="POST" style="display:none;">
+  <input type="hidden" name="Metode" value="GoPay">
+  <input type="hidden" name="Nomor GoPay" id="f_nomor">
+  <input type="hidden" name="WhatsApp" id="f_wa">
+  <input type="hidden" name="Paket" id="f_nominal">
+  <input type="hidden" name="Total Tagihan" id="f_harga">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_subject" value="Order GoPay Kujo Market">
+</form>
+
+</body>
+</html>
