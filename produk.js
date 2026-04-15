@@ -1,7 +1,7 @@
 // EDIT DATA DAGANGAN DI SINI
 const dataProduk = [
   {
-    nama: "Moskov Allstar Sold", // Ada kata 'Sold', otomatis ke bawah & abu-abu
+    nama: "Moskov Allstar"
     harga: "Rp70.000",
     coret: "Rp100.000",
     link: "moskov.html",
