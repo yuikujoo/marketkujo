@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kujo Market - Detail Produk</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Squada+One&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        body { background-color: #050505; color: #f0f0f0; overflow-x: hidden; }
+        .bg-dark-card { background: rgba(18, 18, 18, 0.98); }
+        .ui-font { font-family:'Poppins', sans-serif; }
+        .logo-font { font-family:'Squada One', sans-serif; letter-spacing:1px; display: flex; gap: 1px; }
+        
+        /* SWIPER & RASIO 3:4 */
+        .swiper-slide img {
+            width: 100%;
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border-radius: 0 0 24px 24px;
+        }
+        
+        .swiper-pagination-bullet { background: rgba(255,255,255,0.2) !important; opacity: 1; width: 6px; height: 6px; }
+        .swiper-pagination-bullet-active { background: #fff !important; width: 20px; border-radius: 10px; }
+
+        .discount-badge {
+            background: linear-gradient(135deg, #bf953f, #fcf6ba, #aa771c);
+            color: #000; font-weight: 800; padding: 4px 12px; border-radius: 8px; font-size: 12px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    </style>
+</head>
+<body class="ui-font pb-24">
+
+<div class="bg-dark-card p-4 px-6 flex justify-between items-center sticky top-0 z-50 border-b border-white/5">
+  <div class="flex items-center gap-3" onclick="location.href='index.html'">
+    <img src="https://i.supaimg.com/23b223c0-a5cc-4eb9-a50a-df79dbf49f6a/55af5214-850d-4391-8cb1-807fc897e444.png" class="w-8 h-8 rounded-lg">
+    <h1 class="text-xl logo-font text-white">Kujo Market</h1>
+  </div>
+  <button onclick="toggleMenu()" class="text-2xl text-white">☰</button>
+  <div id="menu" class="hidden absolute right-4 top-16 bg-[#111] border border-white/10 rounded-2xl w-44 p-2 shadow-3xl z-50 backdrop-blur-xl text-sm">
+    <a href="index.html" class="block px-4 py-3 rounded-xl hover:bg-white/5 border-b border-white/5">🏠 Home</a>
+    <a href="#" class="block px-4 py-3 rounded-xl hover:bg-white/5">☎️ Kontak Cs</a>
+  </div>
+</div>
+
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper" id="product-images">
+        </div>
+    <div class="swiper-pagination"></div>
+</div>
+
+<div class="p-5">
+  <div class="flex items-center gap-2 mb-2">
+    <span class="discount-badge" id="display-discount">SAVE 0%</span>
+    <span class="text-xs text-red-500 font-bold uppercase tracking-tighter">Ready Stok!</span>
+  </div>
+
+  <div class="flex items-baseline gap-3">
+    <p class="text-3xl font-bold text-white" id="display-price">Rp0</p>
+    <p class="text-sm text-gray-500 line-through" id="display-old-price">Rp0</p>
+  </div>
+
+  <h2 class="mt-4 text-lg font-medium text-gray-200 leading-relaxed" id="display-title">
+    Nama Produk Loading...
+  </h2>
+
+  <div class="mt-6">
+    <h3 class="text-sm font-bold text-white mb-2">Deskripsi Produk</h3>
+    <p class="text-xs text-gray-400 leading-6" id="display-desc">
+      Deskripsi loading...
+    </p>
+  </div>
+</div>
+
+<div class="fixed bottom-0 left-0 right-0 bg-[#0a0a0a]/80 backdrop-blur-lg border-t border-white/10 flex gap-3 p-4 z-50">
+  <button onclick="alert('Fitur belum tersedia')" class="flex-1 py-3 rounded-xl border border-white/20 text-white text-sm font-semibold flex items-center justify-center gap-2">
+    🛒 <span class="hidden md:inline">Keranjang</span>
+  </button>
+  
+  <button onclick="beliKeWA()" class="flex-[2] py-4 rounded-xl bg-white text-black font-bold text-sm shadow-[0_0_20px_rgba(255,255,255,0.2)] uppercase tracking-wider">
+    Beli Sekarang
+  </button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+/** * EDIT DATA DI SINI BIAR GAMPANG 
+ */
+const PROD_DATA = {
+    nama: "MOSKOV ALLSTAR",
+    hargaPromo: "Rp75.000",
+    hargaCoret: "Rp75.000",
+    diskon: "SAVE 25%",
+    deskripsi: "EMBLEM ALLMAX",
+    waNomor: "6285227733952",
+    fotos: [
+        "https://via.placeholder.com/600x800/111/fff?text=Product+Image+1",
+        "https://via.placeholder.com/600x800/222/fff?text=Product+Image+2",
+        "https://via.placeholder.com/600x800/111/fff?text=Product+Image+3"
+    ]
+};
+
+// Fungsi Render Data Ke UI
+function renderProduct() {
+    document.getElementById('display-title').innerText = PROD_DATA.nama;
+    document.getElementById('display-price').innerText = PROD_DATA.hargaPromo;
+    document.getElementById('display-old-price').innerText = PROD_DATA.hargaCoret;
+    document.getElementById('display-discount').innerText = PROD_DATA.diskon;
+    document.getElementById('display-desc').innerText = PROD_DATA.deskripsi;
+
+    const swiperWrapper = document.getElementById('product-images');
+    swiperWrapper.innerHTML = PROD_DATA.fotos.map(url => `
+        <div class="swiper-slide">
+            <img src="${url}" alt="Product Photo">
+        </div>
+    `).join('');
+}
+
+// Fungsi Klik Beli Langsung WA
+function beliKeWA() {
+    const textWA = "Screenshot akun web lalu kirim untuk konfirmasi masih atau sudah sold";
+    const urlWA = `https://wa.me/${PROD_DATA.waNomor}?text=${encodeURIComponent(textWA)}`;
+    window.open(urlWA, '_blank');
+}
+
+// Jalankan Fungsi
+renderProduct();
+
+// Inisialisasi Swiper
+const swiper = new Swiper(".mySwiper", {
+    loop: true,
+    grabCursor: true,
+    pagination: { el: ".swiper-pagination", clickable: true },
+    autoplay: { delay: 4000, disableOnInteraction: false },
+});
+
+// Menu Logic
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("hidden");
+}
+</script>
+
+</body>
+</html>
