@@ -1,7 +1,7 @@
 // Simpan file ini dengan nama: produk.js
 const dataProduk = [
   {
-    nama: "sold",
+    nama: "Moskov epic",
     harga: "Rp70.000",
     coret: "Rp100.000",
     badge: "PROMO", 
