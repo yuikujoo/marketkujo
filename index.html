@@ -3,125 +3,373 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Kujo Market - Premium Store</title>
+<title>Kujo Market - Exclusive Top Up</title>
+
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Squada+One&family=Poppins:wght@400;500;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Squada+One&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-  ::-webkit-scrollbar { display: none; }
-  body { background-color: #050505; color: #f0f0f0; font-family: 'Poppins', sans-serif; overflow-x: hidden; }
-  .bg-dark-card { background: rgba(18, 18, 18, 0.98); }
-  .font-logo { font-family: 'Squada One', sans-serif; letter-spacing: 1px; }
-  
-  /* GIMIK EMAS */
-  .gold-text { 
-    background: linear-gradient(135deg, #bf953f, #fcf6ba, #aa771c, #fcf6ba, #bf953f); 
-    background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
-    animation: shineText 3s linear infinite; 
-  }
-  @keyframes shineText { to { background-position: 200% center; } }
+.overflow-x-auto::-webkit-scrollbar { display:none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
 
-  /* CARD & BORDER PUTAR */
-  .card-premium { 
-    position: relative; background: #0f0f0f; border-radius: 1rem; overflow: hidden;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    z-index: 1; transition: transform 0.2s ease;
-  }
-  .card-premium:not(.is-sold-out):active { transform: scale(0.95); }
-  .card-premium::before {
-    content: ''; position: absolute; width: 150%; height: 150%;
-    background-image: conic-gradient(transparent, transparent, transparent, #bf953f);
-    animation: rotateBorder 4s linear infinite; z-index: -2;
-  }
-  .card-premium::after { content: ''; position: absolute; inset: 2px; background: #111; border-radius: 0.9rem; z-index: -1; }
-  @keyframes rotateBorder { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+body { background-color: #050505; color: #f0f0f0; overflow-x: hidden; width: 100%; }
+.bg-dark-card { background: rgba(18, 18, 18, 0.98); }
 
-  /* BADGE */
-  .gold-badge { 
-    background: linear-gradient(135deg, #bf953f, #fcf6ba, #aa771c); color: #000; 
-    font-weight: 800; font-size: 9px; padding: 2px 6px; border-radius: 4px; 
-    animation: pulseBadge 1.5s infinite alternate; 
-  }
-  @keyframes pulseBadge { from { transform: scale(1); } to { transform: scale(1.1); } }
+/* LOGO ANIMASI WHITE */
+.logo-font {
+  font-family:'Squada One',sans-serif;
+  letter-spacing:1px;
+  display: flex;
+  gap: 1px;
+}
+.logo-font span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: letterAnim 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  background: #ffffff; 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@keyframes letterAnim { to { opacity: 1; transform: translateY(0); } }
 
-  .entry-anim { opacity: 0; animation: fadeInUp 0.6s ease forwards; }
-  @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.logo-font span:nth-child(1){animation-delay:0.1s;}.logo-font span:nth-child(2){animation-delay:0.15s;}
+.logo-font span:nth-child(3){animation-delay:0.2s;}.logo-font span:nth-child(4){animation-delay:0.25s;}
+.logo-font span:nth-child(5){animation-delay:0.3s;}.logo-font span:nth-child(6){animation-delay:0.35s;}
+.logo-font span:nth-child(7){animation-delay:0.4s;}.logo-font span:nth-child(8){animation-delay:0.45s;}
+.logo-font span:nth-child(9){animation-delay:0.5s;}.logo-font span:nth-child(10){animation-delay:0.55s;}
+.logo-font span:nth-child(11){animation-delay:0.6s;}
 
-  /* SOLD OUT SYSTEM */
-  .is-sold-out { filter: grayscale(1) !important; opacity: 0.5 !important; cursor: not-allowed !important; pointer-events: none !important; }
-  .is-sold-out::before { background-image: conic-gradient(transparent, transparent, transparent, #444) !important; }
-  .is-sold-out .gold-badge { background: #333 !important; color: #888 !important; animation: none !important; }
-  .is-sold-out .gold-text { background: #666 !important; -webkit-text-fill-color: #666 !important; }
+.ui-font { font-family:'Poppins',sans-serif; }
 
-  .animate-marquee { animation: marquee 15s linear infinite; display: flex; width: max-content; }
-  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+/* SLIDER 3D MOBILE CENTER */
+.slider-container {
+  position: relative;
+  width: 100vw;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+}
+
+.slide-wrapper {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.banner-card {
+  min-width: 75vw;
+  height: 140px;
+  margin: 0 10px;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  transform: scale(0.8);
+  opacity: 0.4;
+}
+
+.banner-card.active {
+  transform: scale(1.05);
+  opacity: 1;
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.banner-card img { width: 100%; height: 100%; object-fit: cover; }
+
+.card-hover { 
+    transition: all .4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.card-hover:hover { 
+    transform: translateY(-5px); 
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-item { animation: slideUp 0.5s ease forwards; }
+
+.badge {
+  position: relative;
+  background: linear-gradient(135deg, #bf953f, #fcf6ba, #aa771c);
+  background-size: 200% 200%;
+  animation: gradientMove 3s linear infinite;
+  box-shadow: 0 0 12px rgba(191, 149, 63, 0.7);
+  overflow: hidden;
+  color: #000;
+  font-weight: 800;
+  border-radius: 4px;
+}
+.badge::after {
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.8),transparent);
+  animation: shine 2.5s infinite;
+}
+@keyframes shine { 0% { left:-100%; } 50% { left:100%; } 100% { left:100%; } }
+@keyframes gradientMove { 0% { background-position:0% 50%; } 50% { background-position:100% 50%; } 100% { background-position:0% 50%; } }
+
+.category-btn {
+  background: #151515;
+  color: #777;
+  font-size: 11px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid #222;
+  white-space: nowrap;
+}
+.active-cat { background: #ffffff; color: #000; border-color: #ffffff; }
+
+.overlay { background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 70%, transparent 100%); }
 </style>
 </head>
-<body>
 
-<div class="bg-dark-card p-4 px-6 flex justify-between items-center sticky top-0 z-50 border-b border-white/5 shadow-2xl">
+<body class="ui-font">
+
+<div class="bg-dark-card p-4 px-6 flex justify-between items-center sticky top-0 z-50 border-b border-white/5">
   <div class="flex items-center gap-3">
-    <div class="w-8 h-8 rounded-md bg-[#bf953f] flex items-center justify-center font-bold text-black">K</div>
-    <h1 class="text-xl font-logo gold-text">KUJO MARKET</h1>
+    <img src="https://i.supaimg.com/23b223c0-a5cc-4eb9-a50a-df79dbf49f6a/55af5214-850d-4391-8cb1-807fc897e444.png" class="w-8 h-8 rounded-lg">
+    <h1 class="text-xl logo-font">
+      <span>K</span><span>u</span><span>j</span><span>o</span><span>&nbsp;</span><span>M</span><span>a</span><span>r</span><span>k</span><span>e</span><span>t</span>
+    </h1>
   </div>
   <button onclick="toggleMenu()" class="text-2xl text-white">☰</button>
-  <div id="menu" class="hidden absolute right-4 top-16 bg-[#111]/95 border border-white/10 rounded-2xl w-44 p-2 z-50 backdrop-blur-xl text-white">
-    <ul class="space-y-1 text-sm">
-      <li onclick="location.href='index.html'" class="p-3 rounded-xl hover:bg-white/5 cursor-pointer">🏠 Home</li>
-      <li onclick="location.href='topup.html'" class="p-3 rounded-xl hover:bg-white/5 cursor-pointer">💰 Top Up</li>
-    </ul>
+  
+  <div id="menu" class="hidden absolute right-4 top-16 bg-[#111] border border-white/10 rounded-2xl w-44 p-2 shadow-3xl z-50 backdrop-blur-xl">
+    <a href="index.html" class="block px-4 py-2 rounded-xl hover:bg-white/5 transition">Kontak Cs ☎️</a>
   </div>
 </div>
 
-<div class="bg-white/5 border-y border-white/5 py-1 overflow-hidden">
-  <div class="whitespace-nowrap flex gap-10 animate-marquee">
-    <span class="text-[9px] font-bold gold-text uppercase">⚡ FLASH SALE PREMIUM ITEM - HARGA KHUSUS MEMBER VIP ⚡</span>
-    <span class="text-[9px] font-bold gold-text uppercase">⚡ FLASH SALE PREMIUM ITEM - HARGA KHUSUS MEMBER VIP ⚡</span>
+<div class="slider-container mt-4">
+  <div id="slide-wrapper" class="slide-wrapper">
+    <div class="banner-card active">
+      <img src="https://i.supaimg.com/23b223c0-a5cc-4eb9-a50a-df79dbf49f6a/8ae8e357-976c-4a6e-a8d9-5c8a48e44aa6.png">
+    </div>
+    <div class="banner-card">
+      <img src="banner2.jpg">
+    </div>
+    <div class="banner-card">
+      <img src="banner3.jpg">
+    </div>
   </div>
 </div>
 
-<div id="product-list" class="p-4 grid grid-cols-2 gap-4"></div>
+<div class="flex gap-2 px-4 py-2 mt-2 overflow-x-auto no-scrollbar">
+  <button onclick="filterItems('all', this)" class="category-btn active-cat">Populer</button>
+  <button onclick="filterItems('game', this)" class="category-btn">Games</button>
+  <button onclick="filterItems('pulsa', this)" class="category-btn">Pulsa</button>
+  <button onclick="filterItems('ewallet', this)" class="category-btn">E-Wallet</button>
+  <button onclick="goAccountGame()" class="category-btn">Account</button>
+</div>
 
-<script src="produk.js"></script>
+<h2 class="px-5 mt-6 mb-4 text-sm font-bold flex items-center gap-2">
+  <span id="title-text" class="text-white uppercase tracking-widest">Populer</span>
+  <div class="h-[1px] flex-1 bg-white/10 ml-2"></div>
+</h2>
+
+<div id="items-grid" class="grid grid-cols-3 gap-3 p-4 pb-20">
+  
+  <a href="ml.html" class="game-item animate-item" data-category="game">
+    <div class="rounded-2xl overflow-hidden relative card-hover bg-[#111] aspect-[3/4]">
+      <span class="absolute top-2 left-2 z-10 badge text-[8px] px-1.5 py-0.5">-10%</span>
+      <img src="ml.jpg" class="w-full h-full object-cover opacity-80" alt="Mobile Legends">
+      <div class="absolute bottom-0 w-full overlay p-2 text-white text-[10px] font-medium">Mobile Legends</div>
+    </div>
+  </a>
+
+  <a href="ff.html" class="game-item animate-item" data-category="game">
+    <div class="rounded-2xl overflow-hidden relative card-hover bg-[#111] aspect-[3/4]">
+      <span class="absolute top-2 left-2 z-10 badge text-[8px] px-1.5 py-0.5">HOT</span>
+      <img src="ff.jpg" class="w-full h-full object-cover opacity-80" alt="Free Fire">
+      <div class="absolute bottom-0 w-full overlay p-2 text-white text-[10px] font-medium">Free Fire</div>
+    </div>
+  </a>
+
+  <a href="pubg.html" class="game-item animate-item" data-category="game">
+    <div class="rounded-2xl overflow-hidden relative card-hover bg-[#111] aspect-[3/4]">
+      <span class="absolute top-2 left-2 z-10 badge text-[8px] px-1.5 py-0.5">NEW</span>
+      <img src="pubg.jpg" class="w-full h-full object-cover opacity-80" alt="PUBG">
+      <div class="absolute bottom-0 w-full overlay p-2 text-white text-[10px] font-medium">PUBG Mobile</div>
+    </div>
+  </a>
+
+  <a href="telkomsel.html" class="game-item animate-item" data-category="pulsa">
+    <div class="rounded-2xl overflow-hidden relative card-hover bg-[#111] aspect-[3/4]">
+      <span class="absolute top-2 left-2 z-10 badge text-[8px] px-1.5 py-0.5">SALE</span>
+      <img src="telkomsel.jpg" class="w-full h-full object-cover opacity-80">
+      <div class="absolute bottom-0 w-full overlay p-2 text-white text-[10px] font-medium">Telkomsel</div>
+    </div>
+  </a>
+
+  <a href="indosat.html" class="game-item animate-item" data-category="pulsa">
+    <div class="rounded-2xl overflow-hidden relative card-hover bg-[#111] aspect-[3/4]">
+      <span class="absolute top-2 left-2 z-10 badge text-[8px] px-1.5 py-0.5">PROMO</span>
+      <img src="indosat.jpg" class="w-full h-full object-cover opacity-80">
+      <div class="absolute bottom-0 w-full overlay p-2 text-white text-[10px] font-medium">Indosat</div>
+    </div>
+  </a>
+
+  <a href="xl.html" class="game-item animate-item" data-category="pulsa">
+    <div class="rounded-2xl overflow-hidden relative card-hover bg-[#111] aspect-[3/4]">
+      <span class="absolute top-2 left-2 z-10 badge text-[8px] px-1.5 py-0.5">FAST</span>
+      <img src="xl.jpg" class="w-full h-full object-cover opacity-80">
+      <div class="absolute bottom-0 w-full overlay p-2 text-white text-[10px] font-medium">XL Axiata</div>
+    </div>
+  </a>
+
+  <a href="tri.html" class="game-item animate-item" data-category="pulsa">
+    <div class="rounded-2xl overflow-hidden relative card-hover bg-[#111] aspect-[3/4]">
+      <span class="absolute top-2 left-2 z-10 badge text-[8px] px-1.5 py-0.5">CHEAP</span>
+      <img src="tri.jpg" class="w-full h-full object-cover opacity-80">
+      <div class="absolute bottom-0 w-full overlay p-2 text-white text-[10px] font-medium">Tri (3)</div>
+    </div>
+  </a>
+
+  <a href="smartfren.html" class="game-item animate-item" data-category="pulsa">
+    <div class="rounded-2xl overflow-hidden relative card-hover bg-[#111] aspect-[3/4]">
+      <span class="absolute top-2 left-2 z-10 badge text-[8px] px-1.5 py-0.5">STABLE</span>
+      <img src="smartfren.jpg" class="w-full h-full object-cover opacity-80">
+      <div class="absolute bottom-0 w-full overlay p-2 text-white text-[10px] font-medium">Smartfren</div>
+    </div>
+  </a>
+
+  <a href="axis.html" class="game-item animate-item" data-category="pulsa">
+    <div class="rounded-2xl overflow-hidden relative card-hover bg-[#111] aspect-[3/4]">
+      <span class="absolute top-2 left-2 z-10 badge text-[8px] px-1.5 py-0.5">PROMO</span>
+      <img src="axis.jpg" class="w-full h-full object-cover opacity-80">
+      <div class="absolute bottom-0 w-full overlay p-2 text-white text-[10px] font-medium">Axis</div>
+    </div>
+  </a>
+
+  <a href="dana.html" class="game-item animate-item" data-category="ewallet">
+    <div class="rounded-2xl overflow-hidden relative card-hover bg-[#111] aspect-[3/4]">
+      <span class="absolute top-2 left-2 z-10 badge text-[8px] px-1.5 py-0.5">BEST</span>
+      <img src="dana.jpg" class="w-full h-full object-cover opacity-80">
+      <div class="absolute bottom-0 w-full overlay p-2 text-white text-[10px] font-medium">DANA</div>
+    </div>
+  </a>
+
+  <a href="ovo.html" class="game-item animate-item" data-category="ewallet">
+    <div class="rounded-2xl overflow-hidden relative card-hover bg-[#111] aspect-[3/4]">
+      <span class="absolute top-2 left-2 z-10 badge text-[8px] px-1.5 py-0.5">HOT</span>
+      <img src="ovo.jpg" class="w-full h-full object-cover opacity-80">
+      <div class="absolute bottom-0 w-full overlay p-2 text-white text-[10px] font-medium">OVO</div>
+    </div>
+  </a>
+
+  <a href="gopay.html" class="game-item animate-item" data-category="ewallet">
+    <div class="rounded-2xl overflow-hidden relative card-hover bg-[#111] aspect-[3/4]">
+      <span class="absolute top-2 left-2 z-10 badge text-[8px] px-1.5 py-0.5">PROMO</span>
+      <img src="gopay.jpg" class="w-full h-full object-cover opacity-80">
+      <div class="absolute bottom-0 w-full overlay p-2 text-white text-[10px] font-medium">GoPay</div>
+    </div>
+  </a>
+
+  <a href="linkaja.html" class="game-item animate-item" data-category="ewallet">
+    <div class="rounded-2xl overflow-hidden relative card-hover bg-[#111] aspect-[3/4]">
+      <span class="absolute top-2 left-2 z-10 badge text-[8px] px-1.5 py-0.5">NEW</span>
+      <img src="linkaja.jpg" class="w-full h-full object-cover opacity-80">
+      <div class="absolute bottom-0 w-full overlay p-2 text-white text-[10px] font-medium">LinkAja</div>
+    </div>
+  </a>
+
+  <a href="shopeepay.html" class="game-item animate-item" data-category="ewallet">
+    <div class="rounded-2xl overflow-hidden relative card-hover bg-[#111] aspect-[3/4]">
+      <span class="absolute top-2 left-2 z-10 badge text-[8px] px-1.5 py-0.5">HOT</span>
+      <img src="shopeepay.jpg" class="w-full h-full object-cover opacity-80">
+      <div class="absolute bottom-0 w-full overlay p-2 text-white text-[10px] font-medium">ShopeePay</div>
+    </div>
+  </a>
+
+</div>
 
 <script>
-  function renderMarket() {
-    const list = document.getElementById('product-list');
-    
-    // Cek Sold Out di Nama atau Badge (Auto Greyscale & Turun)
-    const isSold = (item) => {
-      const teksNama = item.nama.toLowerCase();
-      const teksBadge = item.badge.toLowerCase();
-      return teksNama.includes("sold") || teksBadge.includes("sold");
-    };
+// 3D SLIDER LOGIC
+let currentPos = 0;
+const slides = document.querySelectorAll('.banner-card');
+const wrapper = document.getElementById('slide-wrapper');
 
-    // Urutkan: Yang Sold Out otomatis ke bawah
-    const sortedData = [...dataProduk].sort((a, b) => isSold(a) - isSold(b));
+function moveSlider() {
+  slides.forEach((s, i) => {
+    s.classList.remove('active');
+    if (i === currentPos) s.classList.add('active');
+  });
 
-    list.innerHTML = sortedData.map((item, index) => {
-      const soldOut = isSold(item);
-      return `
-        <div class="card-premium entry-anim ${soldOut ? 'is-sold-out' : ''}" 
-             style="animation-delay: ${index * 0.1}s"
-             ${soldOut ? '' : "onclick='location.href=\"detail.html\"'"}>
-          <div class="p-1 w-full h-full relative z-10 text-center">
-            <div class="absolute top-2 left-2 z-20 gold-badge">${item.badge}</div>
-            <img src="${item.foto}" class="w-full aspect-[3/4] object-cover rounded-t-xl">
-            <div class="p-3">
-              <p class="text-[11px] font-bold ${soldOut ? 'text-gray-500' : 'text-white'} truncate">${item.nama}</p>
-              <p class="text-[9px] text-red-500/80 line-through">${item.coret}</p>
-              <p class="text-xs ${soldOut ? 'text-gray-600 font-bold' : 'gold-text font-black scale-110'}">
-                ${soldOut ? 'HABIS' : item.harga}
-              </p>
-            </div>
-          </div>
-        </div>
-      `;
-    }).join('');
-  }
+  const cardWidth = window.innerWidth * 0.75; 
+  const margin = 20; 
+  const offset = (window.innerWidth / 2) - (cardWidth / 2) - (currentPos * (cardWidth + margin)) - 10;
 
-  window.onload = renderMarket;
-  function toggleMenu() { document.getElementById("menu").classList.toggle("hidden"); }
+  wrapper.style.transform = `translateX(${offset}px)`;
+}
+
+setInterval(() => {
+  currentPos = (currentPos + 1) % slides.length;
+  moveSlider();
+}, 4000);
+
+window.addEventListener('resize', moveSlider);
+moveSlider();
+
+// MENU LOGIC
+function toggleMenu() {
+  document.getElementById("menu").classList.toggle("hidden");
+}
+
+// FILTER LOGIC
+function filterItems(category, el) {
+  document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active-cat'));
+  el.classList.add('active-cat');
+
+  const titleText = document.getElementById("title-text");
+  const items = document.querySelectorAll('.game-item');
+  let count = 0;
+
+  items.forEach(item => {
+    item.classList.remove('animate-item');
+    void item.offsetWidth; // Trigger reflow untuk reset animasi
+    item.classList.add('animate-item');
+
+    if (category === 'all') {
+      titleText.innerText = "Populer";
+      // Hanya tampilkan 6 item pertama untuk menu populer
+      if (count < 6) {
+        item.style.display = 'block';
+        count++;
+      } else {
+        item.style.display = 'none';
+      }
+    } else {
+      titleText.innerText = category.toUpperCase();
+      if (item.getAttribute('data-category') === category) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    }
+  });
+}
+
+function goAccountGame(){ window.location.href = "list.html"; }
+
+// Close menu when clicking outside
+window.onclick = (e) => {
+  const menu = document.getElementById('menu');
+  if (menu && !menu.contains(e.target) && !e.target.innerText.includes('☰')) menu.classList.add('hidden');
+};
+
+// Initial load (Populer view)
+document.addEventListener('DOMContentLoaded', () => {
+    filterItems('all', document.querySelector('.category-btn'));
+});
 </script>
+
 </body>
 </html>
